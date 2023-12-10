@@ -1,5 +1,4 @@
 import 'package:emart/consts/consts.dart';
-import 'package:flutter/material.dart';
 
 Widget appLogoWidget() {
   // using Velocity X here

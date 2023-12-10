@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:emart/view/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:emart/firebase_options.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'consts/consts.dart';
 
@@ -16,7 +14,9 @@ void main() async {
               apiKey: "AIzaSyB77v7db4W4Ltl6n_YevJD_bePOQwKObB0",
               appId: "1:538373107019:android:90401ddc43ea1908a88cce",
               messagingSenderId: "538373107019",
-              projectId: "emart-7dc73"))
+              projectId: "emart-7dc73",
+              storageBucket: "emart-7dc73.appspot.com",
+              ))
       : await Firebase.initializeApp();
   runApp(const MyApp());
 }

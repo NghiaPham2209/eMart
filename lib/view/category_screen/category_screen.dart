@@ -1,7 +1,6 @@
 import 'package:emart/consts/consts.dart';
 import 'package:emart/consts/lists.dart';
 import 'package:emart/widget_common/bg_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'CategoryDetail_Screen.dart';

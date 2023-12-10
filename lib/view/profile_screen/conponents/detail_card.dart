@@ -1,5 +1,4 @@
 import 'package:emart/consts/consts.dart';
-import 'package:flutter/material.dart';
 
 Widget detailCard({width, String? count, String? title}) {
   return Column(

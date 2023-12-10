@@ -11,11 +11,13 @@ const name = "Name";
 const nameHint = "Sumo";
 const forgotPassword = "Forgot Password";
 const login = "Login";
-const sigNup = "Sign Up";
+const signUp = "Sign Up";
 const logout = "Log out";
 const createNewAccount = "or, create a new account";
 const loginWith = "Login With";
 const privacyPolicy = "Privacy Policy";
+const loggedIn = "Logged In Successfully";
+const loggedOut = "Logged Out Successfully";
 const termAndCondition = "Terms and Conditions";
 const alreadyHaveAccount = "Already have an account? ";
 

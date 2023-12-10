@@ -2,8 +2,6 @@ import 'package:emart/consts/consts.dart';
 import 'package:emart/consts/lists.dart';
 import 'package:emart/view/home_screen/components/feature_button.dart';
 import 'package:emart/widget_common/home_button.dart';
-import 'package:flutter/material.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

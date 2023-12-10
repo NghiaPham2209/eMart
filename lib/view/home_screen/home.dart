@@ -4,7 +4,6 @@ import 'package:emart/view/cart_screen/cart_screen.dart';
 import 'package:emart/view/category_screen/category_screen.dart';
 import 'package:emart/view/home_screen/home_screen.dart';
 import 'package:emart/view/profile_screen/profile_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
