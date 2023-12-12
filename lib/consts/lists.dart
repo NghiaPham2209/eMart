@@ -21,9 +21,9 @@ const categoryList = [
   jewelery,
   kidToys,
   sports,
-  autoMobile,
-  womenDress,
   cellPhone,
+  womenDress,
+  autoMobile,
   furniture
 ];
 const categoryListImage = [

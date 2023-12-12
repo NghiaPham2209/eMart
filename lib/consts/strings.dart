@@ -49,7 +49,7 @@ const womenClothing = "Women Clothing",
     kidToys = "Kids & Toys",
     sports = "Sports",
     jewelery = "Jewelery",
-    cellPhone = "Cell Phone",
+    cellPhone = "Cell Phone & Tablet",
     furniture = "Furniture";
 //item detail String
 const video = "Video",
@@ -60,4 +60,4 @@ const video = "Video",
     review = "Review";
 
 //profile string
-const wishList = "My Wishlist", order = "My Order", message = "My Message";
+const wishList = "My Wishlist", order = "My Order", message = "My Message", oldPass = "Old Password", newPass = "New Password";

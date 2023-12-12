@@ -9,7 +9,10 @@
         "emart",
         "filestore",
         "Firestore",
+        "Jewelery",
         "mobilesdk",
-        "signup"
+        "signup",
+        "subcat",
+        "Swiper"
     ]
 }

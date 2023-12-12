@@ -64,6 +64,8 @@ class LoginScreen extends StatelessWidget {
                                 Get.offAll(() => const Home());
                               }else{
                                 controller.isLoading(false);
+                                VxToast.show(context, msg: 'Email or password wrong!');
+
                               }
                             });
                           }).box.width(context.screenWidth - 50).make(),

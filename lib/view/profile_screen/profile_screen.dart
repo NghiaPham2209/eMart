@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:emart/controller/auth_controller.dart';
 import 'package:emart/services/filestore_services.dart';
+import 'package:emart/view/auth_screen/login_screen.dart';
 import 'package:emart/view/profile_screen/edit_profile_screen.dart';
 import 'package:emart/view/profile_screen/profile_controller.dart';
 import 'package:get/get.dart';
+import 'dart:io';
 
 import '../../consts/lists.dart';
 import '../../widget_common/bg_widget.dart';
@@ -35,51 +37,72 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     // edit profile button
-                    const Align(
-                      alignment: Alignment.topRight,
-                      child: Icon(
-                        Icons.edit,
-                        color: whiteColor,
-                      ),
-                    ).onTap(() {
-                      controller.nameController.text = data['name'];
-                      controller.passwordController.text = data['password'];
-                      Get.to(() => EditProfileScreen(data: data));
-                    }),
-                    Row(
-                      children: [
-                        Image.asset(
-                          imgProfile2,
-                          width: 100,
-                          fit: BoxFit.cover,
-                        ).box.roundedFull.clip(Clip.antiAlias).make(),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              "${data['name']}"
-                                  .text
-                                  .fontFamily(semibold)
-                                  .white
-                                  .make(),
-                              10.heightBox,
-                              "${data['email']}".text.white.make(),
-                            ],
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: const Align(
+                        alignment: Alignment.topRight,
+                        child: Icon(
+                          Icons.edit,
+                          color: whiteColor,
                         ),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(
-                              color: whiteColor,
+                      ).onTap(() {
+                        controller.nameController.text = data['name'];
+                        Get.to(() => EditProfileScreen(data: data));
+                      }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: [
+                          data['imageUrl'] == '' &&
+                                  controller.profileImgPath.isEmpty
+                              ? Image.asset(
+                                  imgProfile2,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                ).box.roundedFull.clip(Clip.antiAlias).make()
+                              : data['imageUrl'] != '' &&
+                                      controller.profileImgPath.isEmpty
+                                  ? Image.network(data['imageUrl'],
+                                          width: 100, fit: BoxFit.cover)
+                                      .box
+                                      .roundedFull
+                                      .clip(Clip.antiAlias)
+                                      .make()
+                                  : Image.file(
+                                      File(controller.profileImgPath.value),
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    ).box.roundedFull.clip(Clip.antiAlias).make(),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                "${data['name']}"
+                                    .text
+                                    .fontFamily(semibold)
+                                    .white
+                                    .make(),
+                                10.heightBox,
+                                "${data['email']}".text.white.make(),
+                              ],
                             ),
                           ),
-                          onPressed: () async {
-                            await Get.put(AuthController())
-                                .signOutMethod(context);
-                          },
-                          child: logout.text.fontFamily(semibold).white.make(),
-                        ),
-                      ],
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(
+                                color: whiteColor,
+                              ),
+                            ),
+                            onPressed: () async {
+                              await Get.put(AuthController())
+                                  .signOutMethod(context);
+                              Get.offAll(() => const LoginScreen());
+                            },
+                            child: logout.text.fontFamily(semibold).white.make(),
+                          ),
+                        ],
+                      ),
                     ),
                     20.heightBox,
                     Row(
@@ -99,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                             width: context.screenWidth / 3.4),
                       ],
                     ),
-                    40.heightBox,
+                    10.heightBox,
                     // button section
                     ListView.separated(
                       shrinkWrap: true,

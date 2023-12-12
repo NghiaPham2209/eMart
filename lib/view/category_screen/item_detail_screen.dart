@@ -5,7 +5,8 @@ import '../../consts/consts.dart';
 
 class ItemDetail extends StatelessWidget {
   final String? title;
-  const ItemDetail({super.key, required this.title});
+  final dynamic data;
+  const ItemDetail({super.key, required this.title, required this.data});
 
   @override
   Widget build(BuildContext context) {
