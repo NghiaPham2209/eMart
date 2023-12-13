@@ -32,4 +32,15 @@ class FireStoreService {
         .doc(docID)
         .delete();
   }
+
+  //get all chat messages
+  static getChatMessage(docID) {
+    return firestore
+        .collection(chatCollection)
+        .doc(docID)
+        .collection(messagesCollection)
+        .orderBy('created_on',descending: false)
+        .snapshots();
+  }
+
 }

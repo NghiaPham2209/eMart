@@ -1,5 +1,6 @@
 import 'package:emart/consts/lists.dart';
 import 'package:emart/controller/product_controller.dart';
+import 'package:emart/view/chat_screen/chat_screen.dart';
 import 'package:emart/widget_common/our_button.dart';
 import 'package:get/get.dart';
 
@@ -119,7 +120,12 @@ class ItemDetail extends StatelessWidget {
                             backgroundColor: whiteColor,
                             child: Icon(Icons.message_rounded,
                                 color: darkFontGrey),
-                          ),
+                          ).onTap(() {
+                            Get.to(
+                              () => const ChatScreen(),
+                              arguments: [data['p_seller'], data['vendor_id']],
+                            );
+                          }),
                         ],
                       )
                           .box
@@ -137,10 +143,8 @@ class ItemDetail extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: 100,
-                                  child: "Color: "
-                                      .text
-                                      .color(darkFontGrey)
-                                      .make(),
+                                  child:
+                                      "Color: ".text.color(darkFontGrey).make(),
                                 ),
                                 Row(
                                   children: List.generate(
@@ -152,7 +156,8 @@ class ItemDetail extends StatelessWidget {
                                             .size(40, 40)
                                             .roundedFull
                                             .color(
-                                                Color(data['p_colors'][index]).withOpacity(1.0))
+                                                Color(data['p_colors'][index])
+                                                    .withOpacity(1.0))
                                             .margin(const EdgeInsets.symmetric(
                                                 horizontal: 4))
                                             .make()
@@ -223,10 +228,8 @@ class ItemDetail extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: 100,
-                                  child: "Total: "
-                                      .text
-                                      .color(darkFontGrey)
-                                      .make(),
+                                  child:
+                                      "Total: ".text.color(darkFontGrey).make(),
                                 ),
                                 "${controller.totalPrice.value}"
                                     .numCurrency

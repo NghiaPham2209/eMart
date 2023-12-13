@@ -4,7 +4,7 @@ import 'package:emart/controller/auth_controller.dart';
 import 'package:emart/services/filestore_services.dart';
 import 'package:emart/view/auth_screen/login_screen.dart';
 import 'package:emart/view/profile_screen/edit_profile_screen.dart';
-import 'package:emart/view/profile_screen/profile_controller.dart';
+import 'package:emart/controller/profile_controller.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 

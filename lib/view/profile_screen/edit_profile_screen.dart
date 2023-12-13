@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:emart/view/profile_screen/profile_controller.dart';
+import 'package:emart/controller/profile_controller.dart';
 import 'package:emart/widget_common/bg_widget.dart';
 import 'package:emart/widget_common/custom_textfield.dart';
 import 'package:emart/widget_common/our_button.dart';
