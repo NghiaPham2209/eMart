@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:emart/controller/cart_controller.dart';
 import 'package:emart/services/filestore_services.dart';
+import 'package:emart/view/cart_screen/shipping_screen.dart';
 import 'package:emart/widget_common/loading_indicator.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,16 @@ class CartScreen extends StatelessWidget {
     var controller = Get.put(CartController());
     return Scaffold(
         backgroundColor: whiteColor,
+        bottomNavigationBar: SizedBox(
+            height: 60,
+            child: ourButton(
+              color: redColor,
+              onPress: () {
+                Get.to(() => const ShippingDetails());
+              },
+              txtColor: whiteColor,
+              title: "Proceed to shipping",
+            )),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: "Shopping Cart"
@@ -47,11 +58,12 @@ class CartScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: Image.network("${data[index]['image']}"),
-                            title: "${data[index]['title']}  x${data[index]['quantity']}"
-                                .text
-                                .fontFamily(semibold)
-                                .size(16)
-                                .make(),
+                            title:
+                                "${data[index]['title']}  x${data[index]['quantity']}"
+                                    .text
+                                    .fontFamily(semibold)
+                                    .size(16)
+                                    .make(),
                             subtitle: "${data[index]['totalPrice']}"
                                 .numCurrency
                                 .text
@@ -94,14 +106,6 @@ class CartScreen extends StatelessWidget {
                           .roundedSM
                           .make(),
                       10.heightBox,
-                      SizedBox(
-                          width: context.screenWidth - 60,
-                          child: ourButton(
-                            color: redColor,
-                            onPress: () {},
-                            txtColor: whiteColor,
-                            title: "Proceed to shipping",
-                          )),
                     ],
                   ),
                 );
