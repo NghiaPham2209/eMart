@@ -1,4 +1,3 @@
-
 const appName = "Sumo App";
 const appVersion = "Version 1.0.0";
 const credits = "@Sumo Store";
@@ -60,4 +59,11 @@ const video = "Video",
     review = "Review";
 
 //profile string
-const wishList = "My Wishlist", order = "My Order", message = "My Message", oldPass = "Old Password", newPass = "New Password";
+const wishList = "My Wishlist",
+    order = "My Order",
+    message = "My Message",
+    oldPass = "Old Password",
+    newPass = "New Password";
+
+// payment method strings
+const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";
