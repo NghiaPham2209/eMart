@@ -3,8 +3,9 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:emart/controller/home_controller.dart';
-import 'package:emart/view/home_screen/home_screen.dart';
 import 'package:get/get.dart';
+
+import '../view/home_screen/home.dart';
 
 class CartController extends GetxController {
   // create element ID random
@@ -20,6 +21,7 @@ class CartController extends GetxController {
   var phoneController = TextEditingController();
 
   var paymentIndex = 0.obs;
+  var placingOrder = false.obs;
 
   late dynamic productSnapshot;
   var products = [];
@@ -37,6 +39,7 @@ class CartController extends GetxController {
 
   placeMyOrder(
       {required oderPaymentMethod, required totalAmount, context}) async {
+    placingOrder(true);
     await getProductDetails();
     await firestore.collection(ordersCollection).doc().set({
       'order_code': randomCode,
@@ -56,10 +59,11 @@ class CartController extends GetxController {
       'order_delivered': false,
       'order_on_delivery': false,
       'total_amount': totalAmount,
-      'order': FieldValue.arrayUnion(products),
+      'orders': FieldValue.arrayUnion(products),
     });
     VxToast.show(context, msg: "Payment Successfully");
-    // Get.offAll(() => const HomeScreen());
+    Get.offAll(() => const Home());
+    placingOrder(true);
   }
 
   getProductDetails() {
@@ -68,9 +72,17 @@ class CartController extends GetxController {
       products.add({
         'color': productSnapshot[i]['color'],
         'image': productSnapshot[i]['image'],
+        'vendor_id': productSnapshot[i]['vendor_id'],
+        'totalPrice': productSnapshot[i]['totalPrice'],
         'quantity': productSnapshot[i]['quantity'],
         'title': productSnapshot[i]['title'],
       });
+    }
+  }
+
+  clearCart() {
+    for (var i = 0; i < productSnapshot.length; i++) {
+      firestore.collection(cartCollection).doc(productSnapshot[i].id).delete();
     }
   }
 }

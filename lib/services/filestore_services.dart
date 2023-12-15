@@ -27,10 +27,7 @@ class FireStoreService {
 
   //delete product from cart
   static deleteDocument(docID) {
-    return firestore
-        .collection(cartCollection)
-        .doc(docID)
-        .delete();
+    return firestore.collection(cartCollection).doc(docID).delete();
   }
 
   //get all chat messages
@@ -39,8 +36,30 @@ class FireStoreService {
         .collection(chatCollection)
         .doc(docID)
         .collection(messagesCollection)
-        .orderBy('created_on',descending: false)
+        .orderBy('created_on', descending: false)
         .snapshots();
   }
 
+  static getAllOrders() {
+    return firestore
+        .collection(ordersCollection)
+        .where('order_by', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+  static getWishList() {
+    return firestore
+        .collection(productCollection)
+        .where('p_wishlist', arrayContains: currentUser!.uid)
+        .snapshots();
+  }
+
+  static getAllMessages() {
+    return firestore
+        .collection(chatCollection)
+        .where('from_id', arrayContains: currentUser!.uid)
+        .snapshots();
+  }
+
+  
 }

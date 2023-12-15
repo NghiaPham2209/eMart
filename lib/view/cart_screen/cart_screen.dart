@@ -58,13 +58,40 @@ class CartScreen extends StatelessWidget {
                         itemCount: data.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
-                            leading: Image.network("${data[index]['image']}"),
-                            title:
-                                "${data[index]['title']}  x${data[index]['quantity']}"
+                            leading: Image.network(
+                              "${data[index]['image']}",
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                "${data[index]['title']}"
                                     .text
                                     .fontFamily(semibold)
                                     .size(16)
                                     .make(),
+                                "Quantity: ${data[index]['quantity']}"
+                                    .text
+                                    .fontFamily(semibold)
+                                    .size(16)
+                                    .make(),
+                                Row(
+                                  children: [
+                                    "Color: "
+                                        .text
+                                        .fontFamily(semibold)
+                                        .size(16)
+                                        .make(),
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      color: Color(data[index]['color']),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                             subtitle: "${data[index]['totalPrice']}"
                                 .numCurrency
                                 .text

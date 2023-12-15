@@ -3,8 +3,11 @@ import 'package:emart/consts/consts.dart';
 import 'package:emart/controller/auth_controller.dart';
 import 'package:emart/services/filestore_services.dart';
 import 'package:emart/view/auth_screen/login_screen.dart';
+import 'package:emart/view/chat_screen/messaging_screen.dart';
+import 'package:emart/view/order/order_screen.dart';
 import 'package:emart/view/profile_screen/edit_profile_screen.dart';
 import 'package:emart/controller/profile_controller.dart';
+import 'package:emart/view/wishlist/wishlist_screen.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
@@ -73,7 +76,11 @@ class ProfileScreen extends StatelessWidget {
                                       File(controller.profileImgPath.value),
                                       width: 150,
                                       fit: BoxFit.cover,
-                                    ).box.roundedFull.clip(Clip.antiAlias).make(),
+                                    )
+                                      .box
+                                      .roundedFull
+                                      .clip(Clip.antiAlias)
+                                      .make(),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +106,8 @@ class ProfileScreen extends StatelessWidget {
                                   .signOutMethod(context);
                               Get.offAll(() => const LoginScreen());
                             },
-                            child: logout.text.fontFamily(semibold).white.make(),
+                            child:
+                                logout.text.fontFamily(semibold).white.make(),
                           ),
                         ],
                       ),
@@ -134,6 +142,20 @@ class ProfileScreen extends StatelessWidget {
                       itemCount: profileButtonsList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
+                          onTap: () {
+                            switch (index) {
+                              case 0:
+                                Get.to(() => const OrderScreen());
+                                break;
+                              case 1:
+                                Get.to(() => const WishListScreen());
+                                break;
+                              case 2:
+                                Get.to(() => const MessagesScreen());
+                                break;
+                              default:
+                            }
+                          },
                           leading: Image.asset(
                             profileButtonsIcon[index],
                             width: 22,

@@ -14,7 +14,10 @@ class CategoryScreen extends StatelessWidget {
     var controller = Get.put(ProductController());
     return bgWidget(
       child: Scaffold(
-        appBar: AppBar(title: category.text.fontFamily(regular).white.make()),
+        appBar: AppBar(
+          title: category.text.fontFamily(regular).white.make(),
+          automaticallyImplyLeading: false,
+        ),
         body: Container(
           padding: const EdgeInsets.all(12),
           child: GridView.builder(
