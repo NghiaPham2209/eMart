@@ -57,7 +57,7 @@ class FireStoreService {
   static getAllMessages() {
     return firestore
         .collection(chatCollection)
-        .where('from_id', arrayContains: currentUser!.uid)
+        .where('from_id', isEqualTo: currentUser!.uid)
         .snapshots();
   }
 
