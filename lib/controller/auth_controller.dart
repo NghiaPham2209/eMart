@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart/consts/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,14 +40,14 @@ class AuthController extends GetxController {
   }
 
   //sort data method
-  storeUerData({name, password, email, imageUrl}) async {
+  storeUerData({name, password, email, imageUrl, Array? img}) async {
     DocumentReference store =
         firestore.collection(usersCollection).doc(currentUser!.uid);
     store.set({
       'name': name,
       'password': password,
       'email': email,
-      'imageUrl': '',
+      'imageUrl': img,
     'id': currentUser!.uid,
     'cart_count': "00",
     'order_count': "00",

@@ -17,6 +17,13 @@ class FireStoreService {
         .snapshots();
   }
 
+  static getSubCategoryProduct(title) {
+    return firestore
+        .collection(productCollection)
+        .where('p_subcategory', isEqualTo: title)
+        .snapshots();
+  }
+
   //get cart
   static getCart(uid) {
     return firestore
@@ -61,5 +68,45 @@ class FireStoreService {
         .snapshots();
   }
 
-  
+  static getCounts() async {
+    var res = Future.wait([
+      firestore
+          .collection(cartCollection)
+          .where('added_by', isEqualTo: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+      firestore
+          .collection(productCollection)
+          .where('p_wishlist', arrayContains: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+      firestore
+          .collection(ordersCollection)
+          .where('order_by', isEqualTo: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+    ]);
+    return res;
+  }
+
+  static allProducts() {
+    return firestore.collection(productCollection).snapshots();
+  }
+
+  static getFeatureProducts() {
+    return firestore
+        .collection(productCollection)
+        .where('is_feature', isEqualTo: true)
+        .snapshots();
+  }
+
+  static searchProducts(title) {
+    return firestore.collection(productCollection).get();
+  }
 }

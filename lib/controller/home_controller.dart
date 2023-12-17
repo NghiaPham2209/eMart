@@ -8,8 +8,10 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  var featuredList = [];
   var currentNavIndex = 0.obs;
   var username = '';
+  var searchController = TextEditingController();
 
   getUsername() async {
     var nameFb = await firestore
@@ -22,5 +24,13 @@ class HomeController extends GetxController {
       }
     });
     username = nameFb.toString();
+  }
+
+  fetchFeatured(data) {
+    featuredList.clear();
+    for (var i = 0; i < data.length; i++) {
+      featuredList.add(data[i]);
+    }
+    return featuredList.shuffle();
   }
 }

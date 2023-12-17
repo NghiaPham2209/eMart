@@ -8,6 +8,7 @@ import 'package:emart/view/order/order_screen.dart';
 import 'package:emart/view/profile_screen/edit_profile_screen.dart';
 import 'package:emart/controller/profile_controller.dart';
 import 'package:emart/view/wishlist/wishlist_screen.dart';
+import 'package:emart/widget_common/loading_indicator.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 
@@ -21,6 +22,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProfileController());
+    FireStoreService.getCounts();
 
     return bgWidget(
       child: Scaffold(
@@ -35,6 +37,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               );
             } else {
+              print(currentUser!.uid);
               var data = snapshot.data!.docs[0];
               return SafeArea(
                 child: Column(
@@ -113,22 +116,34 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     20.heightBox,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        detailCard(
-                            count: data['cart_count'],
-                            title: "in your cart",
-                            width: context.screenWidth / 3.4),
-                        detailCard(
-                            count: data['wishlist_count'],
-                            title: "in your wishlist",
-                            width: context.screenWidth / 3.4),
-                        detailCard(
-                            count: data['order_count'],
-                            title: "your orders",
-                            width: context.screenWidth / 3.4),
-                      ],
+                    FutureBuilder(
+                      future: FireStoreService.getCounts(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (!snapshot.hasData) {
+                          return loadingIndicator();
+                        } else {
+                          var countData = snapshot.data;
+
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              detailCard(
+                                count: countData[0].toString(),
+                                title: "in your cart",
+                                width: context.screenWidth / 3.4,
+                              ),
+                              detailCard(
+                                  count: countData[1].toString(),
+                                  title: "in your wishlist",
+                                  width: context.screenWidth / 3.4),
+                              detailCard(
+                                  count: countData[2].toString(),
+                                  title: "your orders",
+                                  width: context.screenWidth / 3.4),
+                            ],
+                          );
+                        }
+                      },
                     ),
                     10.heightBox,
                     // button section
