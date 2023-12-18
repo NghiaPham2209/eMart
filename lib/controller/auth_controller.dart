@@ -40,14 +40,14 @@ class AuthController extends GetxController {
   }
 
   //sort data method
-  storeUerData({name, password, email, imageUrl, Array? img}) async {
+  storeUerData({name, password, email, imageUrl}) async {
     DocumentReference store =
         firestore.collection(usersCollection).doc(currentUser!.uid);
     store.set({
       'name': name,
       'password': password,
       'email': email,
-      'imageUrl': img,
+      'imageUrl': "",
     'id': currentUser!.uid,
     'cart_count': "00",
     'order_count': "00",

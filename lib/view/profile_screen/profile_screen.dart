@@ -37,7 +37,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
               );
             } else {
-              print(currentUser!.uid);
               var data = snapshot.data!.docs[0];
               return SafeArea(
                 child: Column(
