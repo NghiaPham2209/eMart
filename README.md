@@ -1,4 +1,4 @@
 # eMart
 
- Username: sumo@gmail.com /n
+ Username: sumo@gmail.com  
  Password: 123123
