@@ -11,11 +11,11 @@ void main() async {
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: const FirebaseOptions(
-              apiKey: "AIzaSyB77v7db4W4Ltl6n_YevJD_bePOQwKObB0",
-              appId: "1:538373107019:android:90401ddc43ea1908a88cce",
-              messagingSenderId: "538373107019",
-              projectId: "emart-7dc73",
-              storageBucket: "emart-7dc73.appspot.com",
+              apiKey: "AIzaSyDZcGvIzm5xV9BuWB-k4q4OJ_NC3SBXVCo",
+              appId: "1:782198085023:android:ef476f084fb9460422d9aa",
+              messagingSenderId: "782198085023",
+              projectId: "emart-6a393",
+              storageBucket: "emart-6a393.appspot.com",
               ))
       : await Firebase.initializeApp();
   runApp(const MyApp());
